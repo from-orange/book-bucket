@@ -1,0 +1,17 @@
+<%= form_for(@bucketter) do |f| %>
+  <% if @bucketter.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bucketter.errors.count, "error") %> prohibited this bucketter from being saved:</h2>
+
+      <ul>
+      <% @bucketter.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
