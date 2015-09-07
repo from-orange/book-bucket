@@ -10,11 +10,13 @@
   </thead>
 
   <tbody>
+    <tr>
+      <td>Name</td>
+    </tr>
     <% @bucketters.each do |bucketter| %>
       <tr>
+        <td><%= bucketter.name%></td>
         <td><%= link_to 'Show', bucketter %></td>
-        <td><%= link_to 'Edit', edit_bucketter_path(bucketter) %></td>
-        <td><%= link_to 'Destroy', bucketter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -22,4 +24,4 @@
 
 <br>
 
-<%= link_to 'New Bucketter', new_bucketter_path %>
+<%= link_to 'Sign up', new_bucketter_path %>

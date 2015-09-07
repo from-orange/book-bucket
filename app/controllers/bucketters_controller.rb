@@ -25,16 +25,11 @@ class BuckettersController < ApplicationController
   # POST /bucketters.json
   def create
     @bucketter = Bucketter.new(bucketter_params)
-
-    respond_to do |format|
       if @bucketter.save
-        format.html { redirect_to @bucketter, notice: 'Bucketter was successfully created.' }
-        format.json { render :show, status: :created, location: @bucketter }
+        redirect_to @bucketter
       else
-        format.html { render :new }
-        format.json { render json: @bucketter.errors, status: :unprocessable_entity }
+        render 'new'
       end
-    end
   end
 
   # PATCH/PUT /bucketters/1
@@ -69,6 +64,7 @@ class BuckettersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bucketter_params
-      params[:bucketter]
+      params.require(:bucketter).permit(:name, :email, :password,
+                                        :password_confirmation)
     end
 end

@@ -1,9 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Bucketter:</strong>
-  <%= "#{@bucketter.last_name} #{@bucketter.first_name}" %>
+  <strong>Name</strong>
+  <%= @bucketter.name %>
 </p>
-
+<p>
+  <strong>Email</strong>
+  <%= @bucketter.email %>
+</p>
 <%= link_to 'Edit', edit_bucketter_path(@bucketter) %> |
+<%= link_to 'Destroy', @bucketter, method: :delete, data: { confirm: 'Are you sure?' } %>|
 <%= link_to 'Back', bucketters_path %>

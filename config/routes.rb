@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :bucketters
   resources :books
+  root 'books#index'
 
   get "books/" => "books#index"
   # The priority is based upon order of creation: first created -> highest priority.
