@@ -26,6 +26,7 @@ class BuckettersController < ApplicationController
   def create
     @bucketter = Bucketter.new(bucketter_params)
       if @bucketter.save
+        sign_in @bucketter
         redirect_to @bucketter
       else
         render 'new'
