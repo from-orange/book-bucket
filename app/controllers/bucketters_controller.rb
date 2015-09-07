@@ -19,6 +19,7 @@ class BuckettersController < ApplicationController
 
   # GET /bucketters/1/edit
   def edit
+    @bucketter = Bucketter.find(params[id])
   end
 
   # POST /bucketters

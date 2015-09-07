@@ -3,7 +3,7 @@ module SessionsHelper
   def sign_in(bucketter)
     remember_token = Bucketter.new_remember_token
     cookies.permanent[:remember_token] = remember_token
-    bucketter.update_attributes(:remember_token, Bucketter.encrypt(remember_token))
+    bucketter.update_attribute(:remember_token, Bucketter.encrypt(remember_token))
     self.current_bucketter = bucketter
   end
 

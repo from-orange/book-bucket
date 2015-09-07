@@ -1,6 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Books</h1>
+<div class='center hero-unit'>
+  <h1>Welcome to Book Bucket!</h1>
+
+  <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
 
 <%= search_form_for @q do |f| %>
   <%= f.label :title_cont, 'タイトル' %>

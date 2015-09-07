@@ -26,6 +26,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'ransack'
 #password機能
 gem 'bcrypt-ruby', '3.1.2'
+#bootstrapの追加
+gem 'bootstrap-sass'
+gem 'sprockets'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
