@@ -1,4 +1,9 @@
 <p id="notice"><%= notice %></p>
 
+<p>
+  <strong>Bucketter:</strong>
+  <%= "#{@bucketter.last_name} #{@bucketter.first_name}" %>
+</p>
+
 <%= link_to 'Edit', edit_bucketter_path(@bucketter) %> |
 <%= link_to 'Back', bucketters_path %>
