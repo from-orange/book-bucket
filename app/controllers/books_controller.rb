@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :signed_in_user, only: [:edit, :new, :update]
 
   # GET /books
   # GET /books.json
