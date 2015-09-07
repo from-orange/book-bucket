@@ -11,8 +11,8 @@
 <% if signed_in? && current_bucketter == @bucketter %>
 <%= link_to 'Edit', edit_bucketter_path(@bucketter) %> |
 <%= link_to 'Destroy', @bucketter, method: :delete, data: { confirm: 'Are you sure?' } %>|
+<%= link_to 'Register Books', new_book_path %>
 <% end %>
 
-<%= signed_in?%>
 
 <%= link_to 'Back', bucketters_path %>

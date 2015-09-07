@@ -8,7 +8,7 @@ class Bucketter < ActiveRecord::Base
                     uniqueness: { case_sensitive: false}
   validates :password, length: { minimum:6 }
 
-  has_many :books
+  has_many :books, dependent: :destroy
 
   has_secure_password
 
