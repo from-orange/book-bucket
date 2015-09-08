@@ -11,14 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150907023436) do
+ActiveRecord::Schema.define(version: 20150908003620) do
 
   create_table "books", force: :cascade do |t|
     t.string   "title"
     t.integer  "bucketter_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.string   "status"
+    t.string   "category"
+    t.string   "cost"
+    t.integer  "version"
+    t.string   "publisher"
+    t.string   "auther"
   end
+
+  add_index "books", ["auther"], name: "index_books_on_auther"
+  add_index "books", ["category"], name: "index_books_on_category"
+  add_index "books", ["publisher"], name: "index_books_on_publisher"
 
   create_table "bucketters", force: :cascade do |t|
     t.string   "name"
