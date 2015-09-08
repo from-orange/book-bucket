@@ -24,11 +24,15 @@ module SessionsHelper
     self.current_bucketter = nil
     cookies.delete(:remember_token)
   end
-  
+
   def signed_in_user
     unless signed_in?
       # sotre_location
-      redirect_to signin_url, notice: "please sign in"
+      redirect_to signin_url, notice: "please sign in" unless signed_in?
     end
+  end
+
+  def current_bucketter?(bucketter)
+    bucketter == current_bucketter
   end
 end

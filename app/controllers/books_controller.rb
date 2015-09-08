@@ -1,12 +1,12 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
-  before_action :signed_in_user, only: [:edit, :new, :update]
+  before_action :signed_in_user, only: [:edit, :new, :update,:destroy]
+  before_action :current_bucketters_book, only: [:edit, :update,:destroy]
 
   # GET /books
   # GET /books.json
   def index
-  #  @books = Book.all
-  @q        = Book.search(params[:q])
+    @q     = Book.search(params[:q])
     @books = @q.result(distinct: true)
 
   end
@@ -71,4 +71,9 @@ class BooksController < ApplicationController
     def book_params
       params.require(:book).permit(:title)
     end
+
+    def current_bucketters_book
+      redirect_to(root_url) unless @book.bucketter == current_bucketter
+    end
+
 end

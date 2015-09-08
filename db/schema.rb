@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150908003620) do
+ActiveRecord::Schema.define(version: 20150908054413) do
 
   create_table "books", force: :cascade do |t|
     t.string   "title"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20150908003620) do
     t.string   "password"
     t.string   "password_confirmation"
     t.string   "remember_token"
+    t.boolean  "admin"
   end
 
   add_index "bucketters", ["email"], name: "index_bucketters_on_email", unique: true

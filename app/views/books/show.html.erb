@@ -1,11 +1,33 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Title:</strong>
+  <strong>タイトル:</strong>
   <%= @book.title %>
 </p>
 
+<p>
+  <strong>著者:</strong>
+  <%= @book.auther %>
+</p>
+
+<p>
+  <strong>出版社:</strong>
+  <%= @book.publisher %>
+</p>
+
+<p>
+  <%= "第#{@book.version}版" %>
+</p>
+
+<p>
+  <strong>出品者:</strong>
+  <%= @book.bucketter.name %>
+</p>
+
 <%= link_to 'Buy', '#'%>
+
+<% if current_bucketter == @book.bucketter%>
 <%= link_to 'Edit', edit_book_path(@book) %> |
-<%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %>|
+<%= link_to 'Destroy', @book, method: :delete, data: { confirm: 'Are you sure?' } %>|
+<% end %>
 <%= link_to 'Back', books_path %>

@@ -5,7 +5,8 @@ namespace :db do
     name: "Example bucketter",
     email: "bucketter@example.jp",
     password: "foobar",
-    password_confirmation: "foobar")
+    password_confirmation: "foobar",
+    admin: true)
 
     50.times do |n|
       name = Faker::Japanese::Name.name

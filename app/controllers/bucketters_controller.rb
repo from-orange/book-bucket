@@ -1,5 +1,8 @@
 class BuckettersController < ApplicationController
   before_action :set_bucketter, only: [:show, :edit, :update, :destroy]
+  before_action :admin_bucketter, only: :destroy
+  before_action :correct_bucketter, only: [:edit, :update]
+  before_action :signed_in_bucketter, only: [:edit,:update]
 
   # GET /bucketters
   # GET /bucketters.json
@@ -52,10 +55,7 @@ class BuckettersController < ApplicationController
   # DELETE /bucketters/1.json
   def destroy
     @bucketter.destroy
-    respond_to do |format|
-      format.html { redirect_to bucketters_url, notice: 'Bucketter was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to bucketters_url
   end
 
   private
@@ -68,5 +68,20 @@ class BuckettersController < ApplicationController
     def bucketter_params
       params.require(:bucketter).permit(:name, :email, :password,
                                         :password_confirmation)
+    end
+
+    # Before actions
+
+    # def signed_in_user
+    #   redirect_to sigin_url, notice: "Please sign in." unless signed_in?
+    # end
+
+    def currect_bucketter
+      @bucketter = Bucketter.find(params[:id])
+      redirect_to(root_path) unless current_bucketter?(@bucketter)
+    end
+
+    def admin_bucketter
+      redirect_to(root_path) if current_bucketter.admin?
     end
 end
