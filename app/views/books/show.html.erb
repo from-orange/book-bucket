@@ -24,7 +24,8 @@
   <%= @book.bucketter.name %>
 </p>
 
-<%= link_to 'Buy', '#'%>
+<%= link_to 'Buy', deal_path(para: @book) %>
+<%= @book.id %>
 
 <% if current_bucketter == @book.bucketter%>
 <%= link_to 'Edit', edit_book_path(@book) %> |

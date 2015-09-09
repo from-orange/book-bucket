@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150908054413) do
+ActiveRecord::Schema.define(version: 20150909095550) do
 
   create_table "books", force: :cascade do |t|
     t.string   "title"
@@ -40,9 +40,18 @@ ActiveRecord::Schema.define(version: 20150908054413) do
     t.string   "password_confirmation"
     t.string   "remember_token"
     t.boolean  "admin"
+    t.string   "nanika"
   end
 
   add_index "bucketters", ["email"], name: "index_bucketters_on_email", unique: true
   add_index "bucketters", ["remember_token"], name: "index_bucketters_on_remember_token"
+
+  create_table "offers", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "buyer_id"
+    t.integer  "seller_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 end
