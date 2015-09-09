@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
-  before_action :signed_in_user, only: [:edit, :new, :update,:destroy]
+  before_action :signed_in_bucketter, only: [:edit, :new, :update,:destroy]
   before_action :current_bucketters_book, only: [:edit, :update,:destroy]
 
   # GET /books
