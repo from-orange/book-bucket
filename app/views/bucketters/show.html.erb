@@ -1,13 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name</strong>
-  <%= @bucketter.name %>
-</p>
-<p>
-  <strong>Email</strong>
-  <%= @bucketter.email %>
-</p>
+<%= render 'shared/bucketter_data'%>
+
 <% if signed_in? && current_bucketter == @bucketter %>
 <%= link_to 'Edit', edit_bucketter_path(@bucketter) %> |
 <%= link_to 'Destroy', @bucketter, method: :delete, data: { confirm: 'Are you sure?' } %>|

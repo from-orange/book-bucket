@@ -20,6 +20,6 @@
 
   <p>
     <strong>出品者:</strong>
-    <%= @book.bucketter.name %>
+    <%= link_to @book.bucketter.name, bucketter_path(id: @book.bucketter.id) %>
   </p>
 </div>
