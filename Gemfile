@@ -32,6 +32,9 @@ gem 'sprockets'
 #サンプルユーザーテスト
 gem 'faker'
 gem 'faker-japanese'
+#ページネーション
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
