@@ -1,10 +1,18 @@
 <div id = "bucketter_data">
   <p>
-    <strong>Name</strong>
+    <strong>NickName</strong>
     <%= @bucketter.name %>
   </p>
   <p>
     <strong>Email</strong>
     <%= @bucketter.email %>
+  </p>
+  <p>
+    <strong>Address</strong>
+    <%= @bucketter.address %>
+  </p>
+  <p>
+    <strong>Name</strong>
+    <%= "#{@bucketter.last_name} #{@bucketter.first_name}" %>
   </p>
 </div>
