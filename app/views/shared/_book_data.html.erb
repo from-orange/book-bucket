@@ -1,0 +1,25 @@
+<div id = "bookdata">
+  <p>
+    <strong>タイトル:</strong>
+    <%= @book.title %>
+  </p>
+
+  <p>
+    <strong>著者:</strong>
+    <%= @book.auther %>
+  </p>
+
+  <p>
+    <strong>出版社:</strong>
+    <%= @book.publisher %>
+  </p>
+
+  <p>
+    <%= "第#{@book.version}版" %>
+  </p>
+
+  <p>
+    <strong>出品者:</strong>
+    <%= @book.bucketter.name %>
+  </p>
+</div>

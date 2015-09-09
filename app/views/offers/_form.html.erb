@@ -11,7 +11,8 @@
     </div>
   <% end %>
 
-  <p><%="Title:#{@book.title}"%></p>
+  <%= render 'shared/book_data'%>
+
 
   <div class="actions">
     <%= f.submit( "Buy now" )%>
