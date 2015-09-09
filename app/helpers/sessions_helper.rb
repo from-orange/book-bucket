@@ -25,14 +25,23 @@ module SessionsHelper
     cookies.delete(:remember_token)
   end
 
-  def signed_in_user
+  def signed_in_bucketter
     unless signed_in?
-      # sotre_location
+      store_location
       redirect_to signin_url, notice: "please sign in" unless signed_in?
     end
   end
 
   def current_bucketter?(bucketter)
     bucketter == current_bucketter
+  end
+
+  def redirect_back_or(default)
+    redirect_to(sessiln[:return_to]||default)
+    session.delete(:return_to)
+  end
+
+  def store_location
+    session[:return_to] = request.url
   end
 end

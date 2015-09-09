@@ -2,7 +2,7 @@ class BuckettersController < ApplicationController
   before_action :set_bucketter, only: [:show, :edit, :update, :destroy]
   before_action :admin_bucketter, only: :destroy
   before_action :correct_bucketter, only: [:edit, :update]
-  before_action :signed_in_bucketter, only: [:edit,:update]
+  before_action :signed_in_bucketter, only: [:edit,:update, :destroy]
 
   # GET /bucketters
   # GET /bucketters.json
@@ -76,7 +76,7 @@ class BuckettersController < ApplicationController
     #   redirect_to sigin_url, notice: "Please sign in." unless signed_in?
     # end
 
-    def currect_bucketter
+    def correct_bucketter
       @bucketter = Bucketter.find(params[:id])
       redirect_to(root_path) unless current_bucketter?(@bucketter)
     end
