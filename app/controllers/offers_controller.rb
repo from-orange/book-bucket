@@ -2,7 +2,7 @@ class OffersController < ApplicationController
   before_action :set_offer, only: [:show, :edit, :update, :destroy]
   # before_action :correct_bucketter, only:[:show,:edit, :update,:destroy]
   before_action :signed_in_bucketter, only: [:new]
-  before_action :set_bucketter, only: [:new]
+  # before_action :set_bucketter, only: [:new]
 
   @@curent_book = nil
 
@@ -20,6 +20,7 @@ class OffersController < ApplicationController
 
   # GET /offers/new
   def new
+    @bucketter = current_bucketter
     @id = params[:para]
     @offer = Offer.new
     @book = Book.find_by(id: @id)

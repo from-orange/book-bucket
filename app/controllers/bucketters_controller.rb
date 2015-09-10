@@ -13,6 +13,8 @@ class BuckettersController < ApplicationController
   # GET /bucketters/1
   # GET /bucketters/1.json
   def show
+    bucketter_id = @bucketter.id
+    @books = Book.where(bucketter_id: bucketter_id )
   end
 
   # GET /bucketters/new
