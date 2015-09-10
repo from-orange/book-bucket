@@ -67,7 +67,8 @@ class BuckettersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def bucketter_params
       params.require(:bucketter).permit(:name, :email, :password,
-                                        :password_confirmation)
+                                        :password_confirmation,:address,
+                                        :first_name,:last_name)
     end
 
     # Before actions

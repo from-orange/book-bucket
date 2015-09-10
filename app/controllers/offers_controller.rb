@@ -2,6 +2,10 @@ class OffersController < ApplicationController
   before_action :set_offer, only: [:show, :edit, :update, :destroy]
   # before_action :correct_bucketter, only:[:show,:edit, :update,:destroy]
   before_action :signed_in_bucketter, only: [:new]
+  before_action :set_bucketter, only: [:new]
+
+  @@curent_book = nil
+
 
   # GET /offers
   # GET /offers.json
@@ -19,6 +23,7 @@ class OffersController < ApplicationController
     @id = params[:para]
     @offer = Offer.new
     @book = Book.find_by(id: @id)
+    @@current_book = @book
   end
 
   # GET /offers/1/edit
@@ -28,16 +33,23 @@ class OffersController < ApplicationController
   # POST /offers
   # POST /offers.json
   def create
-    @offer = Offer.new(offer_params)
+    @@current_book
+    redirect_to root_url if @@current_book.nil?
 
-    respond_to do |format|
-      if @offer.save
-        format.html { redirect_to @offer, notice: 'Offer was successfully created.' }
-        format.json { render :show, status: :created, location: @offer }
-      else
-        format.html { render :new }
-        format.json { render json: @offer.errors, status: :unprocessable_entity }
-      end
+    buyer_id = current_bucketter.id
+    seller_id = @@current_book.bucketter.id
+
+    @bucketter = current_bucketter
+
+    @offer = @@current_book.offers.new(buyer_id: buyer_id,
+                                       seller_id: seller_id
+                                      )
+
+    if @offer.save
+      # redirect_to(root_url)
+      @@curent_book = nil
+    else
+      render 'new'
     end
   end
 
@@ -75,4 +87,17 @@ class OffersController < ApplicationController
     def offer_params
       params.require(:offer).permit(:name, :buyer_id, :seller_id)
     end
+
+    def correct_bucketter
+
+    end
+
+    def store_book
+      current_book = @book
+    end
+
+    def current_book=(book)
+      @current_book = book
+    end
+
 end
