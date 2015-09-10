@@ -1,5 +1,7 @@
 class OffersController < ApplicationController
   before_action :set_offer, only: [:show, :edit, :update, :destroy]
+  # before_action :correct_bucketter, only:[:show,:edit, :update,:destroy]
+  before_action :signed_in_bucketter, only: [:new]
 
   # GET /offers
   # GET /offers.json
