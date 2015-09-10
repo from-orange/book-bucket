@@ -1,19 +1,24 @@
 <%= form_for(@bucketter) do |f| %>
-  <% if @bucketter.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@bucketter.errors.count, "error") %> prohibited this bucketter from being saved:</h2>
-
-      <ul>
-      <% @bucketter.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render 'shared/error_messages'%>
 
   <div class="field">
-    <%= f.label :name %><br>
+    <%= f.label :name,"Nickname" %><br>
     <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :first_name,"First name" %><br>
+    <%= f.text_field :first_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name,"Last name" %><br>
+    <%= f.text_field :last_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address,"Address" %><br>
+    <%= f.text_field :address %>
   </div>
 
   <div class="field">
