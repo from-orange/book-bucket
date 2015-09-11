@@ -1,0 +1,23 @@
+<div id = "bucketter_data" class ="container">
+  <h1>Bucketter Data</h1>
+  <p>
+    <strong>NickName</strong>
+    <%= @bucketter.name %>
+  </p>
+
+  <% if signed_in? && (current_bucketter == @bucketter) %>
+  <p>
+    <strong>Email</strong>
+    <%= @bucketter.email %>
+  </p>
+  <p>
+    <strong>Address</strong>
+    <%= @bucketter.address %>
+  </p>
+  <p>
+    <strong>Name</strong>
+    <%= "#{@bucketter.last_name} #{@bucketter.first_name}" %>
+  </p>
+  <% end%>
+
+</div>

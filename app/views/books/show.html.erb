@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<%= render 'shared/book_data'%>
+
+<%= link_to 'Buy', deal_path(para: @book) %> |
+
+<% if current_bucketter == @book.bucketter%>
+
+  <%= link_to 'Edit', edit_book_path(@book) %> |
+  <%= link_to 'Destroy', @book, method: :delete, data: { confirm: 'Are you sure?' } %>|
+
+<% end %>
+<%= link_to 'Back', books_path %>
