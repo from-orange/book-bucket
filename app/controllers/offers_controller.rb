@@ -41,6 +41,7 @@ class OffersController < ApplicationController
                                       )
 
     if @offer.save
+      @book.update_attribute(:on_sale, false)
       redirect_to(current_bucketter)
     else
       render 'new'
