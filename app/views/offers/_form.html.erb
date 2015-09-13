@@ -1,20 +1,12 @@
 <%= form_for(@offer) do |f| %>
-  <% if @offer.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@offer.errors.count, "error") %> prohibited this offer from being saved:</h2>
-
-      <ul>
-      <% @offer.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render 'shared/error_messages' %>
 
   <%= render 'shared/book_data'%>
 
-
+  <div class="hidden_field">
+    <%= f.hidden_field :book_id,  :value => @id %>
+  </div>
   <div class="actions">
-    <%= f.submit( "Buy now" )%>
+    <%= f.submit "Buy now!"%>
   </div>
 <% end %>
