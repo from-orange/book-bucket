@@ -15,6 +15,7 @@ class BuckettersController < ApplicationController
   def show
     bucketter_id = @bucketter.id
     @books = Book.where(bucketter_id: bucketter_id )
+    @offers = Offer.where(buyer_id: bucketter_id)
   end
 
   # GET /bucketters/new

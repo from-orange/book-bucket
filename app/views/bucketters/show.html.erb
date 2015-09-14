@@ -42,6 +42,36 @@
 
   </div>
 
+  <div class="bought-books container">
+    <h1>Bought Books</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>タイトル</th>
+          <th>著者</th>
+          <th>出版社</th>
+          <th>版</th>
+           <th colspan="3"></th>
+
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @offers.each do |offer| %>
+          <tr>
+            <td><%= offer.book.title %></td>
+            <td><%= offer.book.auther %></td>
+            <td><%= offer.book.publisher %></td>
+            <td><%= offer.book.version %></td>
+            <td><%= link_to '詳細', offer.book %></td>
+
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
   <%= link_to 'Edit', edit_bucketter_path(@bucketter) %> |
   <%= link_to 'Destroy', @bucketter, method: :delete, data: { confirm: 'Are you sure?' } %>|
   <%= link_to 'Register Books', new_book_path %>
