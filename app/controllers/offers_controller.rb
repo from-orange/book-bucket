@@ -4,9 +4,6 @@ class OffersController < ApplicationController
   before_action :signed_in_bucketter, only: [:new]
   # before_action :set_bucketter, only: [:new]
 
-  @@curent_book = nil
-
-
   # GET /offers
   # GET /offers.json
   def index
@@ -24,7 +21,6 @@ class OffersController < ApplicationController
     @id = params[:para]
     @offer = Offer.new
     @book = Book.find_by(id: @id)
-    @@current_book = @book
   end
 
   # GET /offers/1/edit
@@ -34,21 +30,20 @@ class OffersController < ApplicationController
   # POST /offers
   # POST /offers.json
   def create
-    @@current_book
-    redirect_to root_url if @@current_book.nil?
+    book_id = params[:offer][:book_id]
+    @book = Book.find(book_id)
 
     buyer_id = current_bucketter.id
-    seller_id = @@current_book.bucketter.id
+    seller_id = @book.bucketter.id
 
-    @bucketter = current_bucketter
-
-    @offer = @@current_book.offers.new(buyer_id: buyer_id,
-                                       seller_id: seller_id
+    @offer = @book.offers.new(buyer_id: buyer_id,
+                              seller_id: seller_id
                                       )
 
     if @offer.save
-      # redirect_to(root_url)
-      @@curent_book = nil
+      flash[:success] = "Successfully Offerd"
+      @book.update_attribute(:on_sale, false)
+      redirect_to(current_bucketter)
     else
       render 'new'
     end

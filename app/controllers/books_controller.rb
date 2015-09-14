@@ -32,9 +32,10 @@ class BooksController < ApplicationController
     @book = current_bucketter.books.build(book_params)
 
     if @book.save
+      flash[:success]  = "Successfully Registered"
       redirect_to @book
     else
-      redirect_to new_book_path
+      render 'new'
     end
   end
 
@@ -70,7 +71,8 @@ class BooksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
-      params.require(:book).permit(:title)
+      params.require(:book).permit(:title, :auther, :publisher,
+                                   :version)
     end
 
     def current_bucketters_book

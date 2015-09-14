@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
     bucketter = Bucketter.find_by(email: params[:session][:email].downcase)
     if bucketter && bucketter.authenticate(params[:session][:password])
       sign_in bucketter
+      flash[:success] = "Hello #{bucketter.name}!"
       redirect_back_or bucketter
     else
       render 'new'

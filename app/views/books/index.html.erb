@@ -20,6 +20,7 @@
   <%= f.text_field :version_eq %>
 
 
+
   <div>
     <%= f.submit '検索する' %>
   </div>
@@ -34,6 +35,7 @@
       <th>出版社</th>
       <th><%= sort_link(@q, :version,"版", default_order: :desc) %></th>
       <th>出品者</th>
+      <th>状態</th>
        <th colspan="3"></th>
 
     </tr>
@@ -47,6 +49,13 @@
         <td><%= book.publisher %></td>
         <td><%= book.version %></td>
         <td><%= book.bucketter.name %></td>
+        <td>
+          <% if book.on_sale%>
+            on sale
+          <% else %>
+            sold
+          <% end%>
+        </td>
         <td><%= link_to '詳細', book %></td>
 
       </tr>

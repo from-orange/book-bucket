@@ -15,6 +15,7 @@ class BuckettersController < ApplicationController
   def show
     bucketter_id = @bucketter.id
     @books = Book.where(bucketter_id: bucketter_id )
+    @offers = Offer.where(buyer_id: bucketter_id)
   end
 
   # GET /bucketters/new
@@ -32,6 +33,8 @@ class BuckettersController < ApplicationController
   def create
     @bucketter = Bucketter.new(bucketter_params)
       if @bucketter.save
+        BucketterMailer.welcome_email(@bucketter).deliver_later
+        flash[:success] = "Welcome to the Book Bucket"
         sign_in @bucketter
         redirect_to @bucketter
       else

@@ -1,10 +1,10 @@
-<% if @bucketter.errors.any? %>
+<% if @main.errors.any? %>
   <div id="error_explanation">
     <div class="alert alert-error">
-      The form contains<%= pluralize(@bucketter.errors.count,"error")%>
+      The form contains<%= pluralize(@main.errors.count,"error")%>
     </div>
     <ul>
-      <% @bucketter.errors.full_messages.each do |msg| %>
+      <% @main.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
     </ul>
