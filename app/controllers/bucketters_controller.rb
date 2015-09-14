@@ -33,6 +33,7 @@ class BuckettersController < ApplicationController
   def create
     @bucketter = Bucketter.new(bucketter_params)
       if @bucketter.save
+        BucketterMailer.welcome_email(@bucketter).deliver_later
         sign_in @bucketter
         redirect_to @bucketter
       else
