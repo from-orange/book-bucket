@@ -34,6 +34,7 @@ class BuckettersController < ApplicationController
     @bucketter = Bucketter.new(bucketter_params)
       if @bucketter.save
         BucketterMailer.welcome_email(@bucketter).deliver_later
+        flash[:success] = "Welcome to the Book Bucket"
         sign_in @bucketter
         redirect_to @bucketter
       else

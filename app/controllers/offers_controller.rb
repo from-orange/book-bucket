@@ -41,6 +41,7 @@ class OffersController < ApplicationController
                                       )
 
     if @offer.save
+      flash[:success] = "Successfully Offerd"
       @book.update_attribute(:on_sale, false)
       redirect_to(current_bucketter)
     else

@@ -32,6 +32,7 @@ class BooksController < ApplicationController
     @book = current_bucketter.books.build(book_params)
 
     if @book.save
+      flash[:success]  = "Successfully Registered"
       redirect_to @book
     else
       render 'new'
