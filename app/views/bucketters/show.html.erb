@@ -33,7 +33,12 @@
                 <%=  "sold" %>
                 <% end %>
             </td>
-            <td><%= link_to '詳細', book %></td>
+
+            <% if book.offers.blank?%>
+              <td><%= link_to '詳細', book %></td>
+            <% else %>
+              <td><%= link_to '取引', book.offers.first %></td>
+            <% end %>
 
           </tr>
         <% end %>
