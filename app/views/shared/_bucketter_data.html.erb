@@ -1,4 +1,4 @@
-<div id = "bucketter_data" class ="container">
+<div id = "bucketter_data" class ="container center hero-unit">
   <h1>Bucketter Data</h1>
   <p>
     <strong>NickName: </strong>
@@ -8,17 +8,17 @@
   <% if signed_in? && (current_bucketter ==@bucketter||current_bucketter ==@offer.book.bucketter) %>
     <% if current_bucketter == @bucketter %>
       <p>
-        <strong>Email</strong>
+        <strong>Email: </strong>
         <%= @bucketter.email %>
       </p>
     <% end %>
 
     <p>
-      <strong>本名</strong>
+      <strong>本名: </strong>
       <%= "#{@bucketter.last_name} #{@bucketter.first_name}" %>
     </p>
     <p>
-      <strong>住所</strong>
+      <strong>住所: </strong>
       <%= @bucketter.address %>
     </p>
   <% end%>

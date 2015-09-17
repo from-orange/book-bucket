@@ -7,7 +7,7 @@
   <div class="container">
     <h1>Registerd Books</h1>
 
-    <table>
+    <table class="table table-striped">
       <thead>
         <tr>
           <th>タイトル</th>
@@ -27,10 +27,14 @@
             <td><%= book.auther %></td>
             <td><%= book.publisher %></td>
             <td><%= book.version %></td>
-            <td><% if book.offers.blank? %>
-                <%=   "on sale"%>
+            <td><% if book.on_sale %>
+                  <%=   "on sale"%>
                 <%  else%>
-                <%=  "sold" %>
+                  <% if book.deal_end %>
+                    <%=  "取引終了" %>
+                  <% else %>
+                    <%= "取引中"%>
+                  <% end %>
                 <% end %>
             </td>
 
@@ -50,7 +54,7 @@
   <div class="bought-books container">
     <h1>Bought Books</h1>
 
-    <table>
+    <table class="table table-striped">
       <thead>
         <tr>
           <th>タイトル</th>

@@ -11,19 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150909131738) do
+ActiveRecord::Schema.define(version: 20150917013051) do
 
   create_table "books", force: :cascade do |t|
     t.string   "title"
     t.integer  "bucketter_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.string   "status"
     t.string   "category"
     t.string   "cost"
     t.integer  "version"
     t.string   "publisher"
     t.string   "auther"
+    t.boolean  "on_sale",      default: true
+    t.boolean  "deal_end",     default: false
   end
 
   add_index "books", ["auther"], name: "index_books_on_auther"
@@ -56,6 +58,7 @@ ActiveRecord::Schema.define(version: 20150909131738) do
     t.integer  "seller_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "book_id"
   end
 
 end
