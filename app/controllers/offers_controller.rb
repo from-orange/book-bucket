@@ -13,6 +13,8 @@ class OffersController < ApplicationController
   # GET /offers/1
   # GET /offers/1.json
   def show
+    @book = @offer.book
+    @bucketter = Bucketter.find(@offer.buyer_id)
   end
 
   # GET /offers/new

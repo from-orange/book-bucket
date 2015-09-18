@@ -7,14 +7,15 @@
   <div class="container">
     <h1>Registerd Books</h1>
 
-    <table>
+    <table class="table table-striped">
       <thead>
         <tr>
-          <th>タイトル</th>
+          <th><%= sortable "title", "タイトル"%></th>
           <th>著者</th>
           <th>出版社</th>
           <th>版</th>
           <th>Status</th>
+          <th><%= sortable "created_at", "登録日"%></th>
            <th colspan="3"></th>
 
         </tr>
@@ -27,13 +28,23 @@
             <td><%= book.auther %></td>
             <td><%= book.publisher %></td>
             <td><%= book.version %></td>
-            <td><% if book.offers.blank? %>
-                <%=   "on sale"%>
+            <td><% if book.on_sale %>
+                  <%=   "on sale"%>
                 <%  else%>
-                <%=  "sold" %>
+                  <% if book.deal_end %>
+                    <%=  "取引終了" %>
+                  <% else %>
+                    <%= "取引中"%>
+                  <% end %>
                 <% end %>
             </td>
-            <td><%= link_to '詳細', book %></td>
+            <td><%= needed_time(book.created_at) %></td>
+
+            <% if book.offers.blank?%>
+              <td><%= link_to '詳細', book %></td>
+            <% else %>
+              <td><%= link_to '取引', book.offers.first %></td>
+            <% end %>
 
           </tr>
         <% end %>
@@ -44,14 +55,16 @@
 
   <div class="bought-books container">
     <h1>Bought Books</h1>
-
-    <table>
+    <table class ="table table-striped">
       <thead>
         <tr>
           <th>タイトル</th>
           <th>著者</th>
           <th>出版社</th>
           <th>版</th>
+          <th>出品者</th>
+          <th>状態</th>
+          <th><%= offer_sortable "created_at", "登録日"%></th>
            <th colspan="3"></th>
 
         </tr>
@@ -64,12 +77,26 @@
             <td><%= offer.book.auther %></td>
             <td><%= offer.book.publisher %></td>
             <td><%= offer.book.version %></td>
+            <td><%= offer.book.bucketter.name %></td>
+            <td>
+              <% if offer.book.on_sale%>
+                on sale
+              <% else %>
+                <% if offer.book.deal_end %>
+                  finished
+                <% else %>
+                  dealing
+                <% end %>
+              <% end%>
+            </td>
+            <td><%= needed_time(offer.created_at) %> </td>
             <td><%= link_to '詳細', offer.book %></td>
 
           </tr>
         <% end %>
       </tbody>
     </table>
+
   </div>
 
   <%= link_to 'Edit', edit_bucketter_path(@bucketter) %> |

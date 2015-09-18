@@ -1,10 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <div class='center hero-unit'>
+  <div class='bg-success'>
   <h1>Welcome to Book Bucket!</h1>
 
-  <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
-  <%= link_to "Register Old Books!", new_book_path, class: "btn btn-large"%>
+  <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-info" %>
+  <%= link_to "Register Old Books!", new_book_path, class: "btn btn-lg btn-info"%>
 
 <%= search_form_for @q do |f| %>
   <%= f.label :title_cont, 'タイトル' %>
@@ -18,24 +19,23 @@
 
   <%= f.label :version_eq , '版' %>
   <%= f.text_field :version_eq %>
-
-
-
   <div>
-    <%= f.submit '検索する' %>
+    <%= f.submit '検索する'%>
   </div>
+</div>
+
 <% end %>
 <%=will_paginate%>
-
-<table>
+<table class ="table table-striped">
   <thead>
     <tr>
-      <th><%= sort_link(@q, :title,"タイトル", default_order: :desc) %></th>
+      <th><%= sort_link(@q, :title,"タイトル") %></th>
       <th>著者</th>
       <th>出版社</th>
-      <th><%= sort_link(@q, :version,"版", default_order: :desc) %></th>
+      <th><%= sort_link(@q, :version,"版") %></th>
       <th>出品者</th>
       <th>状態</th>
+      <th><%= sort_link(@q, :created_at, "登録日") %></th>
        <th colspan="3"></th>
 
     </tr>
@@ -56,10 +56,13 @@
             sold
           <% end%>
         </td>
+        <td><%= book.created_at%> </td>
         <td><%= link_to '詳細', book %></td>
 
       </tr>
     <% end %>
   </tbody>
 </table>
+
 <%=will_paginate%>
+</div>

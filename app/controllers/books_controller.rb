@@ -8,6 +8,7 @@ class BooksController < ApplicationController
   def index
     @q     = Book.search(params[:q])
     @books = @q.result(distinct: true)
+    @q.sorts = 'created_at desc' if @q.sorts.empty?
     @books = @books.paginate(page: params[:page])
 
   end

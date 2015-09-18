@@ -1,30 +1,36 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="navbar-inner">
     <div class="container">
+      <div class="navbar-header">
           <%= link_to "Book Bucket", root_path, id: "logo" %>
+      </div>
+      <div class="" >
       <nav>
-        <ul class="nav pull-right">
+        <ul class="nav navbar-nav pull-right">
           <li><%= link_to "Home", root_path %></li>
           <li><%= link_to "Help", '#' %></li>
           <% if signed_in? %>
-            <li id="fat-menu" class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                Account <b class="caret"></b>
+
+            <!-- <li id="fat-menu" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                Account <span class="caret"></span>
               </a>
-              <ul class="dropdown-menu">
+              <ul class="dropdown-menu" role="menu"> -->
                 <li><%= link_to "Profile", current_bucketter %></li>
                 <li><%= link_to "Settings", '#' %></li>
                 <li class="divider"></li>
                 <li>
                   <%= link_to "Sign out", signout_path, method: "delete" %>
                 </li>
-              </ul>
-            </li>
+              <!-- </ul>
+            </li> -->
+
           <% else %>
             <li><%= link_to "Sign in", signin_path %></li>
           <% end %>
         </ul>
       </nav>
+      </div>
     </div>
   </div>
 </header>

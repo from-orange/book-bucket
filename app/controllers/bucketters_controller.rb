@@ -4,6 +4,8 @@ class BuckettersController < ApplicationController
   before_action :correct_bucketter, only: [:edit, :update]
   before_action :signed_in_bucketter, only: [:edit,:update, :destroy]
 
+  helper_method :sort_column, :sort_direction, :offer_sort_column, :offer_sort_direction
+
   # GET /bucketters
   # GET /bucketters.json
   def index
@@ -14,8 +16,8 @@ class BuckettersController < ApplicationController
   # GET /bucketters/1.json
   def show
     bucketter_id = @bucketter.id
-    @books = Book.where(bucketter_id: bucketter_id )
-    @offers = Offer.where(buyer_id: bucketter_id)
+    @offers = Offer.where(buyer_id: bucketter_id).order(offer_sort_column + ' ' + offer_sort_direction)
+    @books = Book.where(bucketter_id: bucketter_id).order(sort_column + ' ' + sort_direction)
   end
 
   # GET /bucketters/new
@@ -89,5 +91,21 @@ class BuckettersController < ApplicationController
 
     def admin_bucketter
       redirect_to(root_path) if current_bucketter.admin?
+    end
+
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ?  params[:direction] : "desc"
+    end
+
+    def sort_column
+      %w[created_at title].include?(params[:sort]) ? params[:sort] : "created_at"
+    end
+
+    def offer_sort_direction
+      %w[asc desc].include?(params[:offer_direction]) ?  params[:offer_direction] : "desc"
+    end
+
+    def offer_sort_column
+      %w[created_at].include?(params[:offer_sort]) ? params[:offer_sort] : "created_at"
     end
 end
