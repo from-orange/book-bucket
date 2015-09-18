@@ -98,11 +98,11 @@
     </table>
 
   </div>
-
-  <%= link_to 'Edit', edit_bucketter_path(@bucketter) %> |
-  <%= link_to 'Destroy', @bucketter, method: :delete, data: { confirm: 'Are you sure?' } %>|
-  <%= link_to 'Register Books', new_book_path %>
+  <%= link_to 'Topへ戻る', root_path, class: "btn btn-default" %>
+  <%= link_to 'Edit', edit_bucketter_path(@bucketter), class: "btn btn-default" %> 
+  <%= link_to 'アカウントの削除', @bucketter, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default" %>
+  <%= link_to '本の登録', new_book_path, class: "btn btn-default" %>
 <% end %>
 
 
-<%= link_to 'Back', bucketters_path %>
+
