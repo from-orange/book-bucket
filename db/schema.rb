@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150917013051) do
+ActiveRecord::Schema.define(version: 20150918094857) do
 
   create_table "books", force: :cascade do |t|
     t.string   "title"
@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(version: 20150917013051) do
     t.integer  "version"
     t.string   "publisher"
     t.string   "auther"
-    t.boolean  "on_sale",      default: true
     t.boolean  "deal_end",     default: false
+    t.boolean  "on_sale",      default: true
   end
 
   add_index "books", ["auther"], name: "index_books_on_auther"
