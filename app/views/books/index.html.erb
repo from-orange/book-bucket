@@ -34,7 +34,6 @@
       <th>出版社</th>
       <th><%= sort_link(@q, :version,"版") %></th>
       <th>出品者</th>
-      <th>状態</th>
       <th><%= sort_link(@q, :created_at, "登録日") %></th>
        <th colspan="3"></th>
 
@@ -43,19 +42,13 @@
 
   <tbody>
     <% @books.each do |book| %>
+    <% next if !book.on_sale %>
       <tr>
         <td><%= book.title %></td>
         <td><%= book.auther %></td>
         <td><%= book.publisher %></td>
         <td><%= book.version %></td>
         <td><%= book.bucketter.name %></td>
-        <td>
-          <% if book.on_sale%>
-            on sale
-          <% else %>
-            sold
-          <% end%>
-        </td>
         <td><%= book.created_at%> </td>
         <td><%= link_to '詳細', book %></td>
 
