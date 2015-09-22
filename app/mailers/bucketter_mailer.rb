@@ -3,7 +3,7 @@ class BucketterMailer < ApplicationMailer
 
  def welcome_email(bucketter)
    @bucketter = bucketter
-   @url  = "http://0.0.0.0:3000/bucketters/#{@bucketter.id}"
+   url_set
    mail(to: @bucketter.email, subject: 'Welcome to BookBucket')
  end
 
@@ -11,4 +11,19 @@ class BucketterMailer < ApplicationMailer
    @bucketter = bucketter
    mail(to: @bucketter.email, subject: 'Welcome to BookBucket')
  end
+
+ def book_register_mail (bucketter, book)
+   @book = book
+   @bucketter = bucketter
+   url_set
+   mail(to: @bucketter.email, subject: "Your Book Registerd!")
+ end
+
+ def purchase_mail(bucketter)
+ end
+
+ private
+  def url_set
+    @url  = "http://0.0.0.0:3000/bucketters/#{@bucketter.id}"
+  end
 end

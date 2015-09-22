@@ -34,6 +34,7 @@ class BooksController < ApplicationController
 
     if @book.save
       flash[:success]  = "Successfully Registered"
+      BucketterMailer.book_register_mail(@book.bucketter,@book).deliver_now
       redirect_to @book
     else
       render 'new'

@@ -1,8 +1,11 @@
-<%= @bucketter.name %>様、Book Bucketへようこそ。
+<%= @bucketter.name %>様、本の登録が完了しました。
 ===============================================
 
-Book Bucketへのサインアップが成功しました。ユーザー名は「<%= @bucketter.name %>」です。
+Book Bucketで本が登録されました。
+タイトル：<%= @book.title %>
+著者：<%= @book.auther%>
+出版社：<%= @book.publisher%>
+版：<%= @book.version %>
+登録日：<%=needed_time(@book.created_at)%>
 
-このサイトにログインするには、<%= @url %>をクリックしてください。
-
-本サイトにユーザー登録いただきありがとうございます。
+サイトにログインするには<%= @url%>をクリックしてください。
