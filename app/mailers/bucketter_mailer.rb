@@ -19,7 +19,11 @@ class BucketterMailer < ApplicationMailer
    mail(to: @bucketter.email, subject: "Your Book Registerd!")
  end
 
- def purchase_mail(bucketter)
+ def purchase_mail(bucketter, book)
+   @bucketter = bucketter
+   url_set
+   @book = book
+   mail(to: @bucketter.email, subject: "Successfully Perachased!")
  end
 
  private
