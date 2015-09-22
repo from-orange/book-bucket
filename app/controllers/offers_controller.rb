@@ -27,6 +27,7 @@ class OffersController < ApplicationController
 
   # GET /offers/1/edit
   def edit
+    @book = @offer.book
   end
 
   # POST /offers
@@ -54,14 +55,19 @@ class OffersController < ApplicationController
   # PATCH/PUT /offers/1
   # PATCH/PUT /offers/1.json
   def update
-    respond_to do |format|
-      if @offer.update(offer_params)
-        format.html { redirect_to @offer, notice: 'Offer was successfully updated.' }
-        format.json { render :show, status: :ok, location: @offer }
+    @book = @offer.book
+    if params[:offer][:deal_end]
+      @book.deal_end = true
+      if @book.save
+        flash[:success] = 'Successfuly done!'
+        redirect_to @book
       else
-        format.html { render :edit }
-        format.json { render json: @offer.errors, status: :unprocessable_entity }
+        flash[:success] = '!'
+        redirect_to edit_offer_path(@offer)
       end
+    else
+      flash[:success] = '!'
+      redirect_to edit_offer_path(@offer)
     end
   end
 

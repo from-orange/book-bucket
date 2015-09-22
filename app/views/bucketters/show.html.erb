@@ -29,7 +29,7 @@
             <td><%= book.publisher %></td>
             <td><%= book.version %></td>
             <td><% if book.on_sale %>
-                  <%=   "on sale"%>
+                  <%=   "販売中"%>
                 <%  else%>
                   <% if book.deal_end %>
                     <%=  "取引終了" %>
@@ -80,17 +80,18 @@
             <td><%= offer.book.bucketter.name %></td>
             <td>
               <% if offer.book.on_sale%>
-                on sale
+                販売中
               <% else %>
                 <% if offer.book.deal_end %>
-                  finished
+                  取引終了
                 <% else %>
-                  dealing
+                  取引中
                 <% end %>
               <% end%>
             </td>
             <td><%= needed_time(offer.created_at) %> </td>
             <td><%= link_to '詳細', offer.book %></td>
+            <td><%= link_to '受取', edit_offer_path(offer)%></td>
 
           </tr>
         <% end %>
