@@ -35,7 +35,7 @@ class BuckettersController < ApplicationController
   def create
     @bucketter = Bucketter.new(bucketter_params)
       if @bucketter.save
-        BucketterMailer.welcome_email(@bucketter).deliver_later
+        BucketterMailer.welcome_email(@bucketter).deliver_now
         flash[:success] = "Welcome to the Book Bucket"
         sign_in @bucketter
         redirect_to @bucketter

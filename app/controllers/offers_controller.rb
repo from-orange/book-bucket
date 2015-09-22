@@ -27,6 +27,7 @@ class OffersController < ApplicationController
 
   # GET /offers/1/edit
   def edit
+    @book = @offer.book
   end
 
   # POST /offers
@@ -43,6 +44,8 @@ class OffersController < ApplicationController
                                       )
 
     if @offer.save
+      BucketterMailer.purchase_mail(current_bucketter, @book).deliver_now
+      BucketterMailer.sold_mail(current_bucketter, @book).deliver_now
       flash[:success] = "Successfully Offerd"
       @book.update_attribute(:on_sale, false)
       redirect_to(current_bucketter)
@@ -54,14 +57,19 @@ class OffersController < ApplicationController
   # PATCH/PUT /offers/1
   # PATCH/PUT /offers/1.json
   def update
-    respond_to do |format|
-      if @offer.update(offer_params)
-        format.html { redirect_to @offer, notice: 'Offer was successfully updated.' }
-        format.json { render :show, status: :ok, location: @offer }
+    @book = @offer.book
+    if params[:offer][:deal_end]
+      @book.deal_end = true
+      if @book.save
+        flash[:success] = 'Successfuly done!'
+        redirect_to @book
       else
-        format.html { render :edit }
-        format.json { render json: @offer.errors, status: :unprocessable_entity }
+        flash[:success] = '!'
+        redirect_to edit_offer_path(@offer)
       end
+    else
+      flash[:success] = '!'
+      redirect_to edit_offer_path(@offer)
     end
   end
 
@@ -83,7 +91,7 @@ class OffersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def offer_params
-      params.require(:offer).permit(:name, :buyer_id, :seller_id)
+      params.require(:offer).permit()
     end
 
     def correct_bucketter

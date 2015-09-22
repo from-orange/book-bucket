@@ -29,7 +29,7 @@
             <td><%= book.publisher %></td>
             <td><%= book.version %></td>
             <td><% if book.on_sale %>
-                  <%=   "on sale"%>
+                  <%=   "販売中"%>
                 <%  else%>
                   <% if book.deal_end %>
                     <%=  "取引終了" %>
@@ -80,17 +80,20 @@
             <td><%= offer.book.bucketter.name %></td>
             <td>
               <% if offer.book.on_sale%>
-                on sale
+                販売中
               <% else %>
                 <% if offer.book.deal_end %>
-                  finished
+                  取引終了
                 <% else %>
-                  dealing
+                  取引中
                 <% end %>
               <% end%>
             </td>
             <td><%= needed_time(offer.created_at) %> </td>
             <td><%= link_to '詳細', offer.book %></td>
+            <% if !offer.book.deal_end %>
+              <td><%= link_to '受取', edit_offer_path(offer)%></td>
+            <% end%>
 
           </tr>
         <% end %>
@@ -99,10 +102,7 @@
 
   </div>
   <%= link_to 'Topへ戻る', root_path, class: "btn btn-default" %>
-  <%= link_to 'Edit', edit_bucketter_path(@bucketter), class: "btn btn-default" %> 
+  <%= link_to 'Edit', edit_bucketter_path(@bucketter), class: "btn btn-default" %>
   <%= link_to 'アカウントの削除', @bucketter, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default" %>
   <%= link_to '本の登録', new_book_path, class: "btn btn-default" %>
 <% end %>
-
-
-

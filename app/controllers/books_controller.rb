@@ -34,6 +34,7 @@ class BooksController < ApplicationController
 
     if @book.save
       flash[:success]  = "Successfully Registered"
+      BucketterMailer.book_register_mail(@book.bucketter,@book).deliver_now
       redirect_to @book
     else
       render 'new'
@@ -43,14 +44,18 @@ class BooksController < ApplicationController
   # PATCH/PUT /books/1
   # PATCH/PUT /books/1.json
   def update
-    respond_to do |format|
-      if @book.update(book_params)
-        format.html { redirect_to @book, notice: 'Book was successfully updated.' }
-        format.json { render :show, status: :ok, location: @book }
+    if book_params(:command) == "end"
+      @book.update_attributes(:deal_end, true)
+      if @book.save
+        flash[:success] = "Deal end!"
+        redirect_to current_bucketter
       else
-        format.html { render :edit }
-        format.json { render json: @book.errors, status: :unprocessable_entity }
+        flash[:error] = "Error!"
+        redirect_to current_bucketter
       end
+    else
+      flash[:notice] = "Error!"
+      redirect_to @book
     end
   end
 
