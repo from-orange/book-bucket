@@ -26,6 +26,13 @@ class BucketterMailer < ApplicationMailer
    mail(to: @bucketter.email, subject: "Successfully Perachased!")
  end
 
+ def sold_mail(bucketter, book)
+   @bucketter = bucketter
+   url_set
+   @book = book
+   mail(to: @bucketter.email, subject: "Offer has Come!")
+ end
+
  private
   def url_set
     @url  = "http://0.0.0.0:3000/bucketters/#{@bucketter.id}"

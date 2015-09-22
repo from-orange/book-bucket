@@ -45,6 +45,7 @@ class OffersController < ApplicationController
 
     if @offer.save
       BucketterMailer.purchase_mail(current_bucketter, @book).deliver_now
+      BucketterMailer.sold_mail(current_bucketter, @book).deliver_now
       flash[:success] = "Successfully Offerd"
       @book.update_attribute(:on_sale, false)
       redirect_to(current_bucketter)
