@@ -91,7 +91,9 @@
             </td>
             <td><%= needed_time(offer.created_at) %> </td>
             <td><%= link_to '詳細', offer.book %></td>
-            <td><%= link_to '受取', edit_offer_path(offer)%></td>
+            <% if !offer.book.deal_end %>
+              <td><%= link_to '受取', edit_offer_path(offer)%></td>
+            <% end%>
 
           </tr>
         <% end %>
