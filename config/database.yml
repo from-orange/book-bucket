@@ -20,6 +20,12 @@ test:
   <<: *default
   database: db/test.sqlite3
 
+  # Herokuに合わせて変更が必要
+# 本番(production)環境のみ
 production:
-  <<: *default
-  database: db/production.sqlite3
+  adapter: postgresql
+  encoding: utf8
+  database: dc40lmhhe6c1um
+  port: 5432
+  username: qotgwfrywtiulk
+  password: xK6Ee2pfKVmDNNliF_WSBjuYNG
